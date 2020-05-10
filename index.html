@@ -31,13 +31,21 @@
 
       <hr class="gray-rule">
       <br>
-      <!--the penis button-->
-      <div class="container" id="snakeContainer">
-        <img src="res/snake.jpg" class="rounded" alt="Snake Image" id ="snakeImage">
-        <div class="bottom-left">JavaScript Snake</div>
+      <!--the project shwocases-->
+      <div class="row">
+        <div class="column">
+          <img src="res/snake.jpg" class="rounded" alt="Snake Image" id ="tabular-image1">
+          <div class="bottom-left">JavaScript Snake</div>
+        </div>
+        <div class="column">
+          <img src="img_forest.jpg" alt="Forest" style="width:100%">
+        </div>
+        <div class="column">
+          <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
+        </div>
       </div>
 
-
+<!--git logo and linkage-->
       <div class="container-sm" id="links-div">
         <a href="https://github.com/mastamysta" target="_blank" rel="noopener noreferrer">
           <img src="/home/ben/Programming/WebDev/FirstSite/res/GitHub-Mark/PNG/GitHub-Mark-120px-plus.png" alt="gitHub Logo" id="gitHub-logo">
@@ -45,21 +53,5 @@
       </div>
     </div>
   </body>
-  <script>
-    function goTo(pageName){
-      window.location.href = pageName;
-    }
-
-    $( "#btn-learn" ).on( "click", function() {
-      goTo("robotica.html");
-    });
-
-    $("#snakeImage").on("click", function(){
-      goTo("snake.html");
-    });
-
-    // $("#gitHub-logo").on("click", function(){
-    //   goTo("https://github.com/mastamysta");
-    // });
-  </script>
+  <script src="index.js"></script>
 </html>
