@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=viewport-width, initial-scale=1.0">
     <title>Snake</title>
   </head>
   <link type="text/css" rel="Stylesheet" href="Styles/Stylesheet.css">
@@ -17,11 +17,12 @@
   </body>
 
   <script>
+  var intervalID = null;
   window.onload = function(){
     canv = document.getElementById('snakeCanvas');
     ctx = canv.getContext("2d");
     document.addEventListener("keydown", keyPush);
-    setInterval(game, 1000/10);
+    intervalID = setInterval(game, 1000/10);
     console.log("Here");
   }
 
@@ -74,6 +75,9 @@
           yVelocity = SPEED;
         }
         break;
+      case 27:
+          clearInterval(intervalID);
+        break;
       default:
         break;
 
@@ -87,26 +91,31 @@
       aPosX = Math.floor(Math.random() * 400 / cellSize) * cellSize;
       aPosY = Math.floor(Math.random() * 400 / cellSize) * cellSize;
      }
+
+//move head
+    trail[0].xPos += xVelocity;
+    trail[0].yPos += yVelocity;
+
+//teleport head if its off the edge
+    if(trail[0].xPos < 0){
+      trail[0].xPos = 400 - cellSize;
+    }
+    else if(trail[0].xPos > 400 - cellSize){
+      trail[0].xPos = 0;
+    }
+    else if(trail[0].yPos < 0){
+      trail[0].yPos = 400 - cellSize;
+    }
+    else if(trail[0].yPos > 400 - cellSize){
+      trail[0].yPos = 0;
+    }
+
+//move tail peices
     for(i = trail.length - 1; i > 0; i --){
       console.log(i);
       trail[i].xPos = trail[i - 1].xPos;
       trail[i].yPos = trail[i - 1].yPos;
     }
-    if(trail[0].xPos < 0){
-      trail[0].xPos = 400;
-    }
-    else if(trail[0].xPos > 400){
-      trail[0].xPos = 0 - cellSize;
-    }
-    if(trail[0].yPos < 0){
-      trail[0].yPos = 400;
-    }
-    else if(trail[0].yPos > 400){
-      trail[0].yPos = 0 - cellSize;
-    }
-    trail[0].xPos += xVelocity;
-    trail[0].yPos += yVelocity;
-
 
     ctx.fillStyle="black";
     ctx.fillRect(0, 0, document.getElementById("snakeCanvas").width,  document.getElementById("snakeCanvas").height);
