@@ -22,3 +22,13 @@ body{
   border-top: 1px solid rgb(79, 92, 98);
   border: rounded;
 }
+
+#links-div{
+  margin: auto;
+  width:0%;
+}
+
+#gitHub-logo{
+  height: 50px;
+  width: auto;
+}
