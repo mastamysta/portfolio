@@ -1,0 +1,14 @@
+body{
+  height:200px;
+}
+
+#controls-jumbo{
+  position:absolute;
+  left:40%;
+  top:20%;
+  width:500px;
+}
+
+#container-table{
+  position: relative;
+}

@@ -5,13 +5,43 @@
     <meta charset="utf-8" name="viewport" content="width=viewport-width, initial-scale=1.0">
     <title>Snake</title>
   </head>
-  <link type="text/css" rel="Stylesheet" href="Styles/Stylesheet.css">
-
+  <link type="text/css" rel="Stylesheet" href="Stylesheets/snake.css">
+  <link type="text/css" rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="Scripts/jquery-3.5.1.min.js"></script>
   <body>
 
-
-    <div style="padding:80px">
-      <canvas id="snakeCanvas" width="400px" height="400px">
+    <div class="container">
+      <table style="width:100%" id="container-table">
+        <tr>
+          <td>
+            <div class="page-header" style="padding:20px">
+              <h1>Snake.js</h1>
+            </div>
+            <div class="container-md">
+              <canvas id="snakeCanvas" width="400px" height="400px">
+            </div>
+            <br>
+            <button class="btn btn-primary" id="back-button">Back</button>
+          </td>
+          <td>
+            <div class="jumbotron" id="controls-jumbo">
+              <h1>Controls</h1>
+              <hr style="top-border:grey">
+              <p>
+                Controls:
+                <ul>
+                  <li>Up</li>
+                  <li>Down</li>
+                  <li>Left</li>
+                  <li>Right</li>
+                  <li>Pause - Esc</li>
+                  <li>Resume - 1</li>
+                </ul>
+              </p>
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
 
   </body>
@@ -36,6 +66,7 @@
   var aPosX = Math.floor(Math.random() * 400 / cellSize) * cellSize;
   var aPosY = Math.floor(Math.random() * 400 / cellSize) * cellSize;
 
+//handle keypress event
   function keyPush(e){
     keyCode = e.keyCode
     switch (keyCode) {
@@ -78,6 +109,9 @@
       case 27:
           clearInterval(intervalID);
         break;
+      case 49:
+          intervalID = setInterval(game, 1000/10);
+        break;
       default:
         break;
 
@@ -86,11 +120,14 @@
   }
 
   function game(){
-    if(trail[0].xPos == aPosX && trail[0].yPos == aPosY){
-      trail[trail.length] = {xPos: aPosX, yPos: aPosY};
-      aPosX = Math.floor(Math.random() * 400 / cellSize) * cellSize;
-      aPosY = Math.floor(Math.random() * 400 / cellSize) * cellSize;
-     }
+
+
+//move tail peices
+    for(i = trail.length - 1; i > 0; i --){
+      console.log(i);
+      trail[i].xPos = trail[i - 1].xPos;
+      trail[i].yPos = trail[i - 1].yPos;
+    }
 
 //move head
     trail[0].xPos += xVelocity;
@@ -110,16 +147,12 @@
       trail[0].yPos = 0;
     }
 
-//move tail peices
-    for(i = trail.length - 1; i > 0; i --){
-      console.log(i);
-      trail[i].xPos = trail[i - 1].xPos;
-      trail[i].yPos = trail[i - 1].yPos;
-    }
 
+//draw background
     ctx.fillStyle="black";
     ctx.fillRect(0, 0, document.getElementById("snakeCanvas").width,  document.getElementById("snakeCanvas").height);
     ctx.fillStyle="lime";
+//draw each snake segment and check for collision with head
     for(let elem of trail){
       ctx.fillRect(elem.xPos, elem.yPos, cellSize, cellSize);
       if(trail[0].xPos == elem.xPos && trail[0].yPos == elem.yPos && elem !== trail[0]){
@@ -127,9 +160,29 @@
         console.log("reloaded");
       }
     }
+
+
+//check for collision with apple
+    if(trail[0].xPos == aPosX && trail[0].yPos == aPosY){
+      trail[trail.length] = {xPos: aPosX, yPos: aPosY};
+      aPosX = Math.floor(Math.random() * 400 / cellSize) * cellSize;
+      aPosY = Math.floor(Math.random() * 400 / cellSize) * cellSize;
+     }
+
+     //draw apple
     ctx.fillStyle="red";
     ctx.fillRect(aPosX, aPosY, cellSize, cellSize);
   }
+
+
+//function to navigate to index again
+  function goTo(location){
+    window.location.href=location;
+  }
+
+  $("#back-button").on("click", function(){
+    goTo("index.html");
+  });
   </script>
 
 </html>
