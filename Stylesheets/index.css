@@ -75,6 +75,5 @@ body{
 }
 
 #overall-container{
-  top:300px;
-  left:0;
+  padding-top: 80px;
 }
