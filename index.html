@@ -7,19 +7,30 @@
   <link rel="stylesheet" href="Stylesheets/index.css" type="text/css">
   <script src="Scripts/jquery-3.5.1.min.js"></script>
   <body>
+
+    <!---NAVBAR--->
+    <div id="nav-bar">
+      <div id="nav-grid">
+        <div id="title" class="navbar-item">
+          <h1>Benjamin Read</h1>
+        </div>
+        <div id="projects-shortcut" class="navbar-item">
+          <h2>Projects</h2>
+        </div>
+        <div id="about-shortcut"  class="navbar-item">
+          <h2>About</h2>
+        </div>
+      </div>
+    </div>
+
     <br>
     <!--overall container-->
-    <div class="container-sm">
-
-      <!--header-->
-      <div class="page-header">
-        <h1>Benjamin Read</h1>
-      </div>
+    <div class="container-sm" class="positon-absolute">
 
       <!--jumbotron-->
       <div class = "container-md" >
         <div class = "jumbotron">
-          <h1 id="text">Robotica is in Development!</h1>
+          <h2 id="text">Robotica is in Development!</h2>
           <p class="lead">A simple game to teach robotics in schools at KS2-3</p>
           <hr class="my-4">
           <p class="lead">Programmed by a student of Computer Science and Electronic Engineering at UoB!</p>
@@ -32,18 +43,28 @@
       <hr class="gray-rule">
       <br>
       <!--the project shwocases-->
+      <h2>Projects</h2>
       <div class="row">
         <div class="column">
-          <img src="res/snake.jpg" class="rounded" alt="Snake Image" id ="tabular-image1">
+          <img src="res/snake.jpg" class="rounded tabular-image" alt="Snake Image" id="image1">
           <div class="bottom-left">JavaScript Snake</div>
         </div>
         <div class="column">
-          <img src="img_forest.jpg" alt="Forest" style="width:100%">
+          <img src="res/yeet.jpg" class="rounded tabular-image" alt="yeet" style="width:100%" id="image2">
+          <div class="bottom-left">Robotica</div>
         </div>
         <div class="column">
           <img src="img_mountains.jpg" alt="Mountains" style="width:100%">
         </div>
       </div>
+
+      <hr class="gray-rule">
+      <br>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam provident ea architecto facilis, vitae impedit? Nemo, molestias quisquam suscipit!</p>
+
+      <hr class="gray-rule">
+      <br>
 
 <!--git logo and linkage-->
       <div class="container-sm" id="links-div">
@@ -53,5 +74,5 @@
       </div>
     </div>
   </body>
-  <script src="index.js"></script>
+  <script src="Scripts/index.js"></script>
 </html>
